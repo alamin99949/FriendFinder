@@ -1,0 +1,6 @@
+{
+  "name": "Friend Finder",
+  "description": "A real-time Google Maps based platform to find friends, join rooms, track live locations, calculate distances, and view routing with speed estimates.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

@@ -1,0 +1,101 @@
+{
+  "entities": {
+    "Room": {
+      "title": "Room",
+      "description": "A private location sharing room session",
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "string",
+          "description": "6-character alphanumeric room code"
+        },
+        "creatorId": {
+          "type": "string",
+          "description": "User UID of the creator"
+        },
+        "creatorName": {
+          "type": "string",
+          "description": "Display name of the creator"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the room was created"
+        }
+      },
+      "required": ["code", "creatorId", "creatorName", "createdAt"]
+    },
+    "RoomMember": {
+      "title": "RoomMember",
+      "description": "A member inside a room sharing location, battery, and speed data",
+      "type": "object",
+      "properties": {
+        "uid": {
+          "type": "string",
+          "description": "User UID of the member"
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name of the member"
+        },
+        "email": {
+          "type": "string",
+          "description": "Email address of the member"
+        },
+        "photoURL": {
+          "type": "string",
+          "description": "Profile picture URL of the member"
+        },
+        "lat": {
+          "type": "number",
+          "description": "Current latitude coordinate"
+        },
+        "lng": {
+          "type": "number",
+          "description": "Current longitude coordinate"
+        },
+        "speed": {
+          "type": "number",
+          "description": "Current movement speed in meters per second"
+        },
+        "heading": {
+          "type": "number",
+          "description": "Current heading direction"
+        },
+        "accuracy": {
+          "type": "number",
+          "description": "Accuracy radius in meters"
+        },
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the location was last updated"
+        },
+        "batteryLevel": {
+          "type": "number",
+          "description": "Battery charge level percentage"
+        },
+        "batteryCharging": {
+          "type": "boolean",
+          "description": "Whether battery is currently charging"
+        },
+        "pingedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when a friend pinged this user"
+        }
+      },
+      "required": ["uid", "displayName", "email", "photoURL", "lat", "lng", "lastUpdated"]
+    }
+  },
+  "firestore": {
+    "rooms/{roomCode}": {
+      "schema": "Room",
+      "description": "Private tracking room collections"
+    },
+    "rooms/{roomCode}/members/{userId}": {
+      "schema": "RoomMember",
+      "description": "Members and their live sharing details inside the room"
+    }
+  }
+}
