@@ -55,13 +55,17 @@ export default function App() {
   const watchIdRef = useRef<number | null>(null);
   const lastPingHandledRef = useRef<any>(null);
 
-  // 1. Subscribe to Firebase Auth changes
+  // 1. Load user from local storage
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
-      setUser(firebaseUser);
-      setAuthLoading(false);
-    });
-    return () => unsubscribe();
+    const cachedUserJson = localStorage.getItem("friend_finder_user");
+    if (cachedUserJson) {
+      try {
+        setUser(JSON.parse(cachedUserJson));
+      } catch (err) {
+        console.error("Failed to parse cached user", err);
+      }
+    }
+    setAuthLoading(false);
   }, []);
 
   // 2. Real-time Subscription to Room Members and Pings
@@ -305,7 +309,7 @@ export default function App() {
 
   const handleLogout = async () => {
     await handleLeaveRoom();
-    await signOut(auth);
+    localStorage.removeItem("friend_finder_user");
     setUser(null);
   };
 

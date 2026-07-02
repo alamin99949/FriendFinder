@@ -107,7 +107,7 @@ export default function RoomSelector({ user, onRoomConnected, onLogout }: RoomSe
           className="flex items-center gap-2 py-2 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-xl border border-slate-700/50 transition-all text-xs font-semibold cursor-pointer"
         >
           <LogOut className="h-4 w-4" />
-          <span>Sign Out</span>
+          <span>Change Name</span>
         </button>
       </div>
 

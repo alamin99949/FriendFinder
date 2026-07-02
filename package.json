@@ -8,7 +8,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
-    "lint": "tsc --noEmit"
+    "lint": "tsc --noEmit",
+    "git-push": "bash git-sync.sh --once",
+    "git-watch": "bash git-sync.sh --watch 10"
   },
   "dependencies": {
     "@google/genai": "^2.4.0",
